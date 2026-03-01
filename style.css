@@ -1,4 +1,4 @@
-/* --- UNIVERSAL RESET --- */
+/* --- RESET & KILL DEFAULT LINKS --- */
 * {
     margin: 0;
     padding: 0;
@@ -8,9 +8,9 @@
 
 :root {
     --bright: #FFFF00; 
+    --volt: #DFFF00;   
     --lime: #CCFF00;   
     --black: #000000;  
-    --dark-gray: #0a0a0a;
 }
 
 body {
@@ -22,6 +22,7 @@ body {
     align-items: center;
 }
 
+/* --- HEADER --- */
 header {
     width: 100%;
     text-align: center;
@@ -39,67 +40,62 @@ nav a {
     color: white !important;
     margin: 0 15px;
     font-size: 1rem;
-}
-
-/* --- THE ROW LIST --- */
-.games-list {
-    display: flex;
-    flex-direction: column; /* Forces them into rows */
-    gap: 15px;
-    width: 90%;
-    max-width: 900px;
-    padding: 40px 0;
-}
-
-.game-row {
-    background-color: var(--dark-gray);
-    border: 2px solid var(--lime);
-    display: flex; /* Image and Text side-by-side */
-    align-items: center;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: 0.3s;
-}
-
-.game-row img {
-    width: 180px;
-    height: 100px;
-    object-fit: cover;
-    border-right: 2px solid var(--lime);
-}
-
-.game-info {
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.game-info .title {
-    color: var(--bright) !important;
-    font-size: 1.4rem;
     text-transform: uppercase;
 }
 
-.game-info .status {
-    color: var(--lime);
-    font-size: 0.8rem;
-    margin-top: 5px;
-    font-family: monospace;
+/* --- THE GRID OF BOXES --- */
+.games-grid {
+    display: grid;
+    /* This creates side-by-side rows that fill the screen */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 25px;
+    width: 95%;
+    max-width: 1400px;
+    padding: 50px 0;
 }
 
-/* HOVER EFFECT */
-.game-row:hover {
-    background-color: #111;
+.game-card {
+    background-color: #080808;
+    border: 2px solid var(--lime);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Image on top, text on bottom */
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.game-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--lime);
+    background-color: #111; /* Placeholder color if image fails */
+}
+
+.card-title {
+    padding: 15px;
+    color: var(--bright) !important;
+    text-align: center;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    background-color: #0a0a0a;
+}
+
+/* --- BOX HOVER GLOW --- */
+.game-card:hover {
+    transform: scale(1.05);
     border-color: var(--bright);
-    box-shadow: 0 0 15px rgba(255, 255, 0, 0.3);
-    transform: translateX(10px); /* Slides slightly to the right on hover */
+    box-shadow: 0 0 25px rgba(255, 255, 0, 0.4);
 }
 
+.game-card:hover .card-title {
+    text-shadow: 0 0 10px var(--bright);
+}
+
+/* Mobile: Just 1 box per row on tiny phones */
 @media (max-width: 600px) {
-    .game-row img {
-        width: 100px;
-    }
-    .game-info .title {
-        font-size: 1rem;
+    .games-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
     }
 }
