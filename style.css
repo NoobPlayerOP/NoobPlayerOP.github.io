@@ -1,206 +1,85 @@
-/* --- 1. COLOR VARIABLES --- */
-/* Ranked from Lightest to Darkest based on your palette */
-:root {
-    --lightest: #FFFF00; /* Pure Yellow */
-    --volt: #DFFF00;     /* Volt */
-    --lime: #CCFF00;     /* Lime */
-    --dark-bg: #000000;  /* Pure Black */
-    --card-bg: #080808;  /* Subtle Gray-Black for depth */
-    --log-bg: #050505;   /* Update Log background */
+/* --- KILL ALL DEFAULT LINK STYLING --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none !important; 
 }
 
-/* --- 2. CORE PAGE STYLING --- */
+:root {
+    --bright: #FFFF00; 
+    --lime: #CCFF00;   
+    --black: #000000;  
+}
+
 body {
-    background-color: var(--dark-bg);
+    background-color: var(--black);
     color: white;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    margin: 0;
+    font-family: 'Arial Black', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    overflow-x: hidden;
 }
 
-/* --- 3. HEADER & NAVIGATION --- */
 header {
     width: 100%;
-    background-color: var(--dark-bg);
-    border-bottom: 4px solid var(--lime);
-    padding: 40px 0;
     text-align: center;
-    box-shadow: 0 5px 25px rgba(204, 255, 0, 0.15);
+    padding: 40px 0;
+    border-bottom: 3px solid var(--lime);
 }
 
 h1 {
-    color: var(--lightest);
-    font-size: 3.5rem;
-    margin: 0;
-    padding: 0 10px;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    text-shadow: 0 0 12px rgba(255, 255, 0, 0.4);
+    color: var(--bright);
+    font-size: 3rem;
+    letter-spacing: 4px;
 }
 
 nav {
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 nav a {
-    color: var(--volt);
-    text-decoration: none;
-    margin: 0 18px;
-    font-weight: bold;
+    color: white !important;
+    margin: 0 20px;
     font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: 0.3s ease;
-    border-bottom: 2px solid transparent;
-    padding-bottom: 4px;
 }
 
-nav a:hover {
-    color: var(--lightest);
-    text-shadow: 0 0 10px var(--lightest);
-    border-bottom: 2px solid var(--lightest);
-}
-
-/* --- 4. HOME PAGE (HERO & LOG) --- */
-.hero {
-    margin-top: 60px;
-    text-align: center;
-    max-width: 800px;
-    padding: 20px;
-}
-
-.hero p {
-    font-size: 1.4rem;
-    color: #888;
-    margin-bottom: 40px;
-}
-
-.enter-vault {
-    display: inline-block;
-    padding: 18px 50px;
-    background-color: var(--lime);
-    color: var(--dark-bg);
-    text-decoration: none;
-    font-weight: 900;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    margin-bottom: 80px;
-}
-
-.enter-vault:hover {
-    background-color: var(--lightest);
-    box-shadow: 0 0 30px var(--lightest);
-    transform: scale(1.05);
-}
-
-.update-log-home {
-    text-align: left;
-    background-color: var(--log-bg);
-    border: 1px solid var(--lime);
-    padding: 30px;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 650px;
-    margin: 0 auto 50px auto;
-}
-
-.log-title {
-    color: var(--lightest);
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--lime);
-    padding-bottom: 12px;
-    margin-top: 0;
-    letter-spacing: 2px;
-}
-
-.log-item {
-    margin-top: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #1a1a1a;
-}
-
-.log-item:last-child {
-    border-bottom: none;
-}
-
-.log-date {
-    color: var(--volt);
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-/* --- 5. GAMES GRID LAYOUT --- */
-.games-container {
+/* --- THE ROW GRID --- */
+.games-grid {
     display: grid;
-    /* This fills the entire width with cards */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
-    padding: 50px;
+    /* Forces at least 3 games per row on desktop */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
     width: 95%;
-    max-width: 1800px;
+    max-width: 1400px;
+    padding: 40px 0;
 }
 
 .game-card {
-    background-color: var(--card-bg);
+    background-color: #080808;
     border: 2px solid var(--lime);
-    border-radius: 10px;
-    height: 200px;
+    color: var(--bright) !important; /* Forces yellow, kills blue */
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-}
-
-.game-title {
-    color: var(--lightest);
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 1.3rem;
-    letter-spacing: 1px;
     text-align: center;
-    padding: 15px;
-    z-index: 2;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    border-radius: 8px;
+    transition: 0.2s ease-in-out;
 }
 
 .game-card:hover {
-    transform: scale(1.04);
-    border-color: var(--lightest);
-    box-shadow: 0 0 30px rgba(255, 255, 0, 0.3);
     background-color: #111;
+    border-color: var(--bright);
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.4);
+    transform: translateY(-5px);
 }
 
-.game-card:hover .game-title {
-    text-shadow: 0 0 15px var(--lightest);
-}
-
-/* --- 6. MOBILE RESPONSIVENESS --- */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.2rem;
-        letter-spacing: 2px;
-    }
-
-    nav a {
-        margin: 0 10px;
-        font-size: 0.9rem;
-    }
-
-    .games-container {
+/* Mobile: Switch to 1 per row only on tiny screens */
+@media (max-width: 650px) {
+    .games-grid {
         grid-template-columns: 1fr;
-        padding: 20px;
-    }
-    
-    .hero p {
-        font-size: 1.1rem;
     }
 }
